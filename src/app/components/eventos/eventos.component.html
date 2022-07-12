@@ -1,0 +1,134 @@
+<!--Mostrar Eventos-->
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'">Administra tus eventos</h2>
+  <h2 class="pb-2 border-bottom" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_USUARIO'" >Eventos</h2>
+
+  <div class="col-lg-3 col-md-4 d-flex" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'">
+    <button class="buttonN up w-100 align-self-center bi bi-plus-square-fill" data-bs-toggle="modal"
+      data-bs-target="#ModalAgregarHotel" > Agregar Evento</button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+
+    <div class="col" *ngFor="let su of eventoModelGet">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg"
+        style="background-image: url('../../../assets/images/unsplash-photo-3.jpg');">
+
+        <ul class="d-flex list-unstyled mt-auto">
+
+          <li class="d-flex align-items-center ">
+            <svg class="bi " width="1em" height="1em">
+              <use xlink:href="#geo-fill" />
+            </svg>
+            <small><i *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'" class="bi bi-trash-fill icons__effect btn btn-sm rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" (click)="deleteEventos(su._id)"></i></small>
+          </li>
+
+          <li class="d-flex align-items-center ">
+            <svg class="bi " width="1em" height="1em">
+              <use xlink:href="#geo-fill" />
+            </svg>
+            <small>
+              <i *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                class="bi bi-pencil-square icons__effect btn btn-sm rounded-circle" data-bs-placement="top" title="Editar" (click)="getEventoId(su._id)"></i>
+            </small>
+          </li>
+        </ul>
+
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{su.Nombre}}</h2>
+          <p class="h6"> Tipo de evento: {{su.tipoEvento}}</p>
+          <p class="h6"> Descripción: {{su.Descripcion}}</p>
+
+          <ul class="d-flex list-unstyled mt-auto justify-content-evenly">
+            <li class="d-flex align-items-center">
+              <svg class="bi" width="1em" height="1em">
+              </svg>
+            </li>
+          </ul>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Fin Mostrar Eventos-->
+
+
+<!--Agregar Eventos-->
+<div class="modal fade " id="ModalAgregarHotel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel" style="color: black">Agregar Evento</h5>
+        <button type="button" class="buttonn close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="mg-3">
+            <label for="inputNombre" class="form-label">Nombre evento</label>
+            <input type="text" id="inputNombre" class="form-control" name="Nombre" #Nombre="ngModel"
+              [(ngModel)]="eventoModelPost.Nombre">
+          </div>
+          <div class="mg-3">
+            <label for="inputTipoEvento" class="form-label">Tipo evento</label>
+            <input type="text" id="inputTipoEvento" class="form-control" name="TipoEvento" #TipoEvento="ngModel"
+              [(ngModel)]="eventoModelPost.tipoEvento">
+          </div>
+          <div class="mg-3">
+            <label for="inputDescripcion" class="form-label">Descripción</label>
+            <input type="text" id="inputDescripcion" class="form-control" name="Descripcion" #Descripcion="ngModel"
+              [(ngModel)]="eventoModelPost.Descripcion">
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="buttonn close" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="buttonn offset" data-bs-dismiss="modal" (click)="postEventos(idHotel)">Agregar
+          Evento</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Fin Agregar Eventos-->
+
+<!--Editar Eventos-->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Eventos</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+
+      <div class="mb-3">
+        <label for="inputNombre" class="form-label">Nombre Evento</label>
+        <input type="text" id="inputNombre" class="form-control" name="Nombre" #Nombre="ngModel"
+          [(ngModel)]="eventoModelGetId.Nombre">
+      </div>
+
+      <div class="mb-3">
+        <label for="inputTipoEvento" class="form-label">Tipo Evento</label>
+        <input type="text" id="inputTipoEvento" class="form-control" name="tipoEvento" #tipoEvento="ngModel"
+          [(ngModel)]="eventoModelGetId.tipoEvento">
+      </div>
+
+      <div class="mb-3">
+        <label for="inputDescripcion" class="form-label">Descripción</label>
+        <input type="text" id="inputDescripcion" class="form-control" name="Descripcion" #Descripcion="ngModel"
+          [(ngModel)]="eventoModelGetId.Descripcion">
+      </div>
+
+      <button type="submit" class="buttonn pulse" data-bs-dismiss="offcanvas" (click)="putEventos()">Editar
+        Evento</button>
+    </form>
+  </div>
+</div>
+
+<!--Fin Editar Eventos-->

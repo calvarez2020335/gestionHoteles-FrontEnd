@@ -1,0 +1,42 @@
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a routerLink="" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none" *ngIf="!token">
+        <img class="bi me-2" width="40" height="32" src="../../../assets/images/image.png">
+
+      </a>
+      <a routerLink="/cliente/hoteles" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_USUARIO'">
+        <img class="bi me-2" width="40" height="32" src="../../../assets/images/image.png">
+
+      </a>
+
+      <a routerLink="/admin/listUser" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"*ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMIN'">
+        <img class="bi me-2" width="40" height="32" src="../../../assets/images/image.png">
+
+      </a>
+
+      <a routerLink="/gerente/hotel" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'">
+        <img class="bi me-2" width="40" height="32" src="../../../assets/images/image.png">
+
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a routerLink="" class="nav-link px-2 text-secondary" *ngIf="!token">Home</a></li>
+        <li><a routerLink="/cliente/hoteles" class="nav-link px-2 text-secondary" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_USUARIO'">Hoteles</a></li>
+        <li><a routerLink="/admin/listUser" class="nav-link px-2 text-white" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMIN'" >Usuarios registrados</a></li>
+        <li><a routerLink="/gerente/hotel" class="nav-link px-2 text-white" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'" > Hoteles </a></li>
+        <li><a routerLink="/hoteles" class="nav-link px-2 text-white" *ngIf="!token" > Hoteles </a></li>
+        <li><a routerLink="/cliente/reservacion" class="nav-link px-2 text-white" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_USUARIO'" >Reservacion</a></li>
+        <li><a routerLink="/cliente/perfil" class="nav-link px-2 text-white" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_USUARIO'" >Perfil cliente</a></li>
+        <li><a routerLink="/gerente/perfil" class="nav-link px-2 text-white" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'" >Perfil </a></li>
+      </ul>
+
+
+
+      <div class="text-end">
+        <button type="button" class="btn btn-warning" routerLink="/login" *ngIf="!token">Login</button>
+        <button type="button" class="btn btn-warning" routerLink="/"  (click)="borrarToken()" *ngIf="_usuarioService.getIdentidad()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </div>
+</header>

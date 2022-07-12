@@ -1,0 +1,65 @@
+<app-navbar *ngIf="!token"></app-navbar>
+
+<!--  Ver Hotel -->
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Hoteles</h2>
+
+  <div class="container col-lg-6  flex">
+
+              <input type="search" class="form-control form-control-dark text-white bg-dark search__bar m-3 "
+              placeholder="Buscar Nombre Hotel..."
+              aria-label="Search"  [(ngModel)]="buscarHotel">
+
+
+              <input type="search" class="form-control form-control-dark text-white bg-dark search__bar m-3 "
+              placeholder="Buscar Direccion Hotel..."
+              aria-label="Search"  [(ngModel)]="buscarDireccion">
+
+  </div>
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+
+    <div class="col" *ngFor="let su of hotelModelGet | usuarioHotel:buscarHotel | usuarioHotelDireccion:buscarDireccion" >
+
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg"
+        style="background-image: url('../../../assets/images/unsplash-photo-1.jpg');">
+
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+
+
+
+
+
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{su.Nombre}}</h2>
+          <p class="h6"> Direccion: {{su.Direccion}}</p>
+          <ul class="d-flex list-unstyled mt-auto">
+
+
+
+
+            <li class="d-flex align-items-center "
+            [routerLink]="['/cliente/habitaciones', su._id]" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_USUARIO'">
+              <svg class="bi " width="1em" height="1em">
+                <use xlink:href="#calendar3" />
+              </svg>
+              <small><i data-bs-toggle="tooltip" data-bs-placement="top" title="Habitaciones" class="bi bi-moon-stars-fill icons__effect btn btn-sm rounded-circle"></i></small>
+            </li>
+            <svg class="bi " width="1em" height="1em">
+              <use xlink:href="#geo-fill" />
+            </svg>
+            <small (click)="getHotelId(su._id)">
+              <i [routerLink]="['/cliente/eventos', su._id]" data-bs-toggle="tooltip" data-bs-placement="top" title="Eventos" class="bi bi-calendar4-week icons__effect btn btn-sm rounded-circle"></i>
+            </small>
+
+
+            <li class="d-flex align-items-center" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_USUARIO'">
+              <svg class="bi " width="1em" height="1em">
+                <use xlink:href="#calendar3" />
+              </svg>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

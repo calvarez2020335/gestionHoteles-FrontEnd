@@ -1,0 +1,51 @@
+<section class="light">
+  <div class="container py-2">
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">
+    </div>
+<h1>Historial</h1>
+  </div>
+  <section class="light">
+    <div class="container py-2">
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 d-flex">
+
+          </div>
+        </div>
+      </div>
+
+
+      <br />
+
+      <article class="postcard light green"></article>
+
+      <!--FOR AQUI-->
+      <article class="postcard light green" *ngFor="let su of HistorialModelGet">
+        <a class="postcard__img_link">
+          <img class="postcard__img" src="https://picsum.photos/500/501" alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+          <h1 class="postcard__title green">
+            <a>Hotel Hospedado: {{su.NombreHotel}}</a>
+          </h1>
+          <div class="postcard__subtitle small">
+          </div>
+
+          <div class="postcard__bar"></div>
+          <div class="postcard__preview-txt" *ngFor="let a of su.servicios">
+
+          </div>
+          <p>Servicios Solicitados</p>
+          <ul typy="A" *ngFor="let a of su.servicios">
+            <li>{{a.nombreServicios}}</li>
+          </ul>
+
+
+        </div>
+      </article>
+    </div>
+  </section>
+
+</section>

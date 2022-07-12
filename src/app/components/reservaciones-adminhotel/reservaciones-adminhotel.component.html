@@ -1,0 +1,38 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Clientes con una reserva activa</h1>
+      <p class="lead text-muted">Ve a los clientes que estan hospedados actualmente en su hotel</p>
+      <p>
+        <input [(ngModel)]="buscarUsuario" class="form-control me-2" type="search" placeholder="Buscar por usuario" aria-label="Search">
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col" *ngFor="let su of reservacionAdminHotelModelGet | usuarioReservacion:buscarUsuario">
+        <div class="card shadow-sm">
+          <img class="bd-placeholder-img card-img-top" width="640" height="340" role="img" preserveAspectRatio="xMidYMid slice" focusable="false" aria-label="Placeholder: image" src="../../../assets/images/pexels-ionix-1648373.jpg" alt="" >
+          <div class="card-body">
+            <p class="card-text">Correo reservación: {{su.CorreoReservacion}}</p>
+            <p class="card-text">Fecha de entrada: {{su.FechaEntrada}}</p>
+            <p class="card-text">Fecha de salida: {{su.FechaSalida}}</p>
+            <p class="card-text">Estado: {{su.Estado}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-outline-secondary" (click)="getReservacionesAdminHotel(su.hotel)" [routerLink]="['/gerente/factura', su.hotel]" >Ver facturas</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

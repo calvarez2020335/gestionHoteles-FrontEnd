@@ -1,0 +1,123 @@
+
+
+<!--  agregar Habitacion -->
+<div class="modal fade " id="ModalAgregarHotel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel" style="color: black">Agregar Habitaciones</h5>
+        <button type="button" class="buttonn close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="mg-3">
+            <label for="inputNombre" class="form-label">Numero Habitacion</label>
+            <input type="number" min="1" max="999" id="inputNombre" class="form-control" name="Nombre" #Nombre="ngModel"
+              [(ngModel)]="habitacionModelPost.numHabitacion">
+          </div>
+          <div class="mg-3">
+            <label for="inputDescripcion" class="form-label">Tipo De Habitacion</label>
+            <input type="text" id="inputDescripcion" class="form-control" name="Descripcion" #Descripcion="ngModel"
+              [(ngModel)]="habitacionModelPost.tipoHabitacion">
+          </div>
+
+          <div class="mg-3">
+            <label for="inputDireccion" class="form-label">Precio por dia</label>
+            <input type="number" id="inputDireccion" class="form-control" name="Direccion" #Direccion="ngModel"
+              [(ngModel)]="habitacionModelPost.Precio">
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="buttonn close" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="buttonn offset" data-bs-dismiss="modal" (click)="postHabitacion(idHotel)">Agregar
+          Habitacion</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Mostrar Habitacion -->
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Habitaciones</h2>
+
+  <div class="col-lg-3 col-md-4 d-flex">
+    <button class="buttonN up w-100 align-self-center bi bi-plus-square-fill" data-bs-toggle="modal"
+      data-bs-target="#ModalAgregarHotel"> Agregar Habitacion</button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+
+    <div class="col" *ngFor="let su of habitacionModelGet">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg"
+        style="background-image: url('../../../assets/images/unsplash-photo-2.jpg');">
+
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="bi bi-trash3-fill icons__effect btn btn-sm rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'" (click)="deleteHabitacion(su._id)">
+        </button>
+          &nbsp;
+        <button class="bi bi-pencil-square icons__effect btn btn-sm rounded-circle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" data-bs-placement="top" title="Editar" *ngIf="token && _usuarioService.getIdentidad().rol === 'ROL_ADMINHOTEL'" (click)="obtenerHabitacionId(su._id)">
+
+          </button>
+        </p>
+
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+
+
+
+
+
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{su.tipoHabitacion}}</h2>
+          <p class="h6"> No. #{{su.numHabitacion}}</p>
+          <p class="h6"> Precio: Q {{su.Precio}}.00</p>
+          <ul class="d-flex list-unstyled mt-auto">
+
+
+            <li class="d-flex align-items-center">
+              <svg class="bi " width="1em" height="1em">
+                <use xlink:href="#calendar3" />
+              </svg>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Editar Habitacion -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Habitacion</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+
+      <div class="mb-3">
+        <label for="inputNumHabitacion" class="form-label">No. Habitacion</label>
+        <input type="number" class="form-control" id="inputNumHabitacion" name="NumHabitacion" #NumHabitacion="ngModel"
+          [(ngModel)]="habitacionModelGetId.numHabitacion">
+      </div>
+      <div class="mb-3">
+        <label for="inputTipoHabitacion" class="form-label"> Tipo Habitacion</label>
+        <input type="text" class="form-control" id="inputTipoHabitacion" name="TipoHabitacion" #TipoHabitacion="ngModel"
+          [(ngModel)]="habitacionModelGetId.tipoHabitacion">
+      </div>
+      <div class="mb-3">
+        <label for="inputPrecio" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="inputPrecio" name="Precio" #Precio="ngModel"
+          [(ngModel)]="habitacionModelGetId.Precio">
+      </div>
+      <button type="submit" class="buttonn pulse" (click)="putHabitacion()" data-bs-dismiss="offcanvas">Editar</button>
+    </form>
+  </div>
+</div>

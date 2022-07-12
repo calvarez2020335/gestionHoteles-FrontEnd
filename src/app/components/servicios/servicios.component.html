@@ -1,0 +1,116 @@
+
+<div class="modal fade " id="ModalAgregarHotel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel" style="color: black">Agregar servicio</h5>
+        <button type="button" class="buttonn close " data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="mg-3">
+            <label for="inputNombre" class="form-label">Nombre del servicio</label>
+            <input type="text" id="inputNombre" class="form-control" name="servicio" #servicio="ngModel"
+              [(ngModel)]="servicioModelPost.servicio">
+          </div>
+          <div class="mg-3">
+            <label for="inputDescripcion" class="form-label">Descripcion</label>
+            <input type="text" id="inputDescripcion" class="form-control" name="descripcion" #descripcion="ngModel"
+              [(ngModel)]="servicioModelPost.descripcion">
+          </div>
+
+          <div class="mg-3">
+            <label for="inputDireccion" class="form-label">Precio</label>
+            <input type="number" id="inputDireccion" class="form-control" name="Precio" #Precio="ngModel"
+              [(ngModel)]="servicioModelPost.Precio">
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="buttonn close" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="buttonn offset" data-bs-dismiss="modal"
+          (click)="postServicios(idHotel)">Agregar
+          Servicio</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Tus servicios</h2>
+
+  <div class="col-lg-3 col-md-4 d-flex">
+    <button class=" buttonN up w-100 align-self-center bi bi-plus-square-fill" data-bs-toggle="modal"
+      data-bs-target="#ModalAgregarHotel"> Agregar servicios</button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+
+    <div class="col" *ngFor="let srv of servicioModelGet">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg"
+        style="background-image: url('../../../assets/images/pexels-clive-kim-4220967.jpg');">
+
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="bi bi-trash3-fill icons__effect mr-2 btn rounded-circle btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" (click)="deleteServicio(srv._id)"></i>
+
+          &nbsp;
+
+          <i class="bi bi-pencil-square mr-2  icons__effect btn rounded-circle btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="editar" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample" (click)="obtenerServiciosId(srv._id)"></i>
+        </p>
+
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+
+
+
+
+
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{srv.servicio}}</h2>
+          <p class="h6"> Descripcion: {{srv.descripcion}}</p>
+          <p class="h6">Precio: Q{{srv.Precio}}.00</p>
+          <ul class="d-flex list-unstyled mt-auto justify-content-evenly">
+            <li class="d-flex align-items-center">
+              <svg class="bi " width="1em" height="1em">
+              </svg>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- OffCanvas Editar Producto -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar servicio</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+
+      <div class="mb-3">
+        <label for="inputNombreProducto" class="form-label">Nombre del servicio</label>
+        <input type="text" class="form-control" id="inputNombreProducto" name="servicio" #servicio="ngModel"
+          [(ngModel)]="servicioModelGetId.servicio">
+      </div>
+      <div class="mb-3">
+        <label for="inputDescripcion" class="form-label"> Descripcion</label>
+        <input type="text" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+          [(ngModel)]="servicioModelGetId.descripcion">
+      </div>
+      <div class="mb-3">
+        <label for="inputDireccion" class="form-label">Direccion</label>
+        <input type="number" class="form-control" id="inputDireccion" name="Precio" #Precio="ngModel"
+          [(ngModel)]="servicioModelGetId.Precio">
+      </div>
+      <button type="submit" class="buttonn pulse" data-bs-dismiss="offcanvas" (click)="putServicio()">Editar</button>
+    </form>
+  </div>
+</div>

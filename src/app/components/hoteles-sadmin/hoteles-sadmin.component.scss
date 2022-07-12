@@ -1,0 +1,173 @@
+.text-shadow-1 {
+    text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
+  }
+  .text-shadow-2 {
+    text-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+  }
+  .text-shadow-3 {
+    text-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+  }
+  
+  .card-cover {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  
+  .icons__effect:hover {
+    background-color: rgb(203, 197, 197);
+    color: rgb(0, 0, 0);
+    transition: all 0.5s linear;
+  }
+  
+  .icons__effect {
+    color: white;
+  }
+  
+  i {
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(#111b54);
+  }
+  
+  .stat {
+    border-right: 1px solid #efefef;
+  }
+  
+  .bg-grey {
+    background: #efefef;
+  }
+  
+  .bg-mix {
+    background: linear-gradient(180deg, #ffffff 50%, #efefef 0);
+  }
+  
+  //css modal
+  
+  // Animate the size, inside
+  .fill:hover,
+  .fill:focus {
+    box-shadow: inset 0 0 0 2em var(--hover);
+  }
+  
+  // Animate the size, outside
+  .pulse:hover,
+  .pulse:focus {
+    animation: pulse 1s;
+    box-shadow: 0 0 0 2em transparent;
+    
+    
+    
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 var(--hover); }
+  }
+  
+  // Stack multiple shadows, one from the left, the other from the right
+  .close:hover,
+  .close:focus {
+    box-shadow:
+      inset -3.5em 0 0 0 var(--hover),
+      inset 3.5em 0 0 0 var(--hover);
+  }
+  
+  // Size can also be negative; see how it's smaller than the element
+  .raise:hover,
+  .raise:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+  }
+  
+  // Animating from the bottom
+  .up:hover,
+  .up:focus {
+    box-shadow: inset 0 -3.25em 0 0 var(--hover);
+  }
+  
+  // And from the left
+  .slide:hover,
+  .slide:focus {
+    box-shadow: inset 6.5em 0 0 0 var(--hover);
+  }
+  
+  // Multiple shadows, one on the outside, another on the inside
+  .offset {
+    box-shadow:
+      0.3em 0.3em 0 0 var(--color),
+      inset 0.3em 0.3em 0 0 var(--color);
+  
+    &:hover,
+    &:focus {
+      box-shadow:
+        0 0 0 0 var(--hover),
+        inset 6em 3.5em 0 0 var(--hover);
+    }
+  }
+  
+  
+  $colors: (
+    fill: #a972cb,
+    pulse: #38c56e,
+    close: #e0251b,
+    raise: #ffa260,
+    up: #1d64c2,
+    slide: #8fc866,
+    offset: #19bc8b
+  
+  );
+  
+  @each $button, $color in $colors {
+    .#{$button} {
+      --color: #{$color};
+      --hover: #{adjust-hue($color, 10deg)};
+    }
+  }
+  
+  // Now every button will have different colors as set above. We get to use the same structure, only changing the custom properties.
+  
+  .buttonn {
+    color: var(--color);
+    transition: 0.25s;
+    &:hover,
+    &:focus {
+      border-color: var(--hover);
+      color: #fff;
+    }
+  }
+  
+  
+  // Basic button styles
+  .buttonn {
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 0.35em 0.7em;
+  }
+  
+  .buttonN {
+    color: var(--color);
+    transition: 0.25s;
+    &:hover,
+    &:focus {
+      border-color: var(--hover);
+      color: #fff;
+    }
+  }
+  
+  
+  // Basic button styles
+  .buttonN {
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 0.8em 0.8em;
+  }
+  
+  
+  
+  

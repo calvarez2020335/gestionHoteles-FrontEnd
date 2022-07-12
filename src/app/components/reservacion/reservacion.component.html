@@ -1,0 +1,64 @@
+<!--  Ver Hotel -->
+
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Reservacion</h2>
+
+  <div class="row row-cols-1 align-items-stretch g-4 py-5">
+
+    <div class="col" *ngFor="let su of reservacionModelGet">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg"
+        style="background-image: url('../../../assets/images/unsplash-photo-1.jpg');">
+
+        <div class="d-flex flex-column  h-100 p-5 pb-3 text-white text-shadow-1">
+
+          <div class="row-cols-3 align-items-center flex-column ">
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold ">{{su.CorreoReservacion}}</h2>
+          <p class="h6"> Fecha Entrada: {{su.FechaEntrada}}</p>
+          <p class="h6"> Fecha Salida: {{su.FechaSalida}}</p>
+          <p class="h6"> Estado: {{su.Estado}}</p>
+          <ul class="d-flex list-unstyled mt-auto">
+          </ul>
+          <button type="button" class="btn btn-dark" (click)="cancelarReservacion()">
+            Cancelar Reservacion
+          </button>
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+            (click)="getServicios(su.hotel)">
+            Solicitar un servicio
+          </button>
+          <button type="button" class="btn btn-dark" routerLink="/cliente/gastos">
+            Ver servicios cobrados
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Solicitar Servicio</h5>
+        <button type="button" class="buttonn close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body ">
+        <form >
+          <div class="mg-3">
+            <label for="inputDireccion" class="form-label">Seleccione el servico</label>
+            <select class="form-select" id="inputGroupSelect01" name="servicio" #adminHotel="ngModel" [(ngModel)]="servicioModelPost.servicio">
+              <option *ngFor="let adminH of servicioModelGet" value={{adminH.servicio}} >{{adminH.servicio}} Q{{adminH.Precio}}</option>
+            </select>
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="buttonn close" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="buttonn offset" data-bs-dismiss="modal" (click)="agregarServicioHabitacion()">Solicitar Servicio</button>
+      </div>
+    </div>
+  </div>
+</div>

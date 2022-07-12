@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gestionDeHoteles-FrontEnd": {
+    "gestionHoteles-FrontEnd": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +23,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/gestion-de-hoteles-front-end",
+            "allowedCommonJsDependencies": ["chart.js"],
+            "outputPath": "dist/gestion-hoteles-front-end",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,22 +35,27 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "150kb",
+                  "maximumError": "150kb"
                 }
               ],
               "fileReplacements": [
@@ -72,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gestionDeHoteles-FrontEnd:build:production"
+              "browserTarget": "gestionHoteles-FrontEnd:build:production"
             },
             "development": {
-              "browserTarget": "gestionDeHoteles-FrontEnd:build:development"
+              "browserTarget": "gestionHoteles-FrontEnd:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gestionDeHoteles-FrontEnd:build"
+            "browserTarget": "gestionHoteles-FrontEnd:build"
           }
         },
         "test": {
@@ -107,5 +116,5 @@
       }
     }
   },
-  "defaultProject": "gestionDeHoteles-FrontEnd"
+  "defaultProject": "gestionHoteles-FrontEnd"
 }

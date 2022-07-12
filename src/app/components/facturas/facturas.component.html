@@ -1,0 +1,37 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Clientes que necesitan una factura</h1>
+      <p class="lead text-muted">Ve a los clientes que necesitan una factura</p>
+      <p class="lead text-muted"> <font color="red"><b>CONFIRMAR FACTURA ANTES DE IMPRIMIRLA</b></font></p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+      <div class="col" *ngFor="let su of facturasModelGet">
+        <div class="card shadow-sm">
+          <img class="bd-placeholder-img card-img-top" width="640" height="340" role="img" preserveAspectRatio="xMidYMid slice" focusable="false" aria-label="Placeholder: image" src="../../../assets/images/pexels-ionix-1648373.jpg" alt="" >
+          <div class="card-body">
+            <p class="card-text">Estado de la factura: {{su.estado}} </p>
+            <p class="card-text">Total de los servicios: Q{{su.Subtotal}}.00 </p>
+            <p class="card-text">Total con habitación y servicios: Q{{su.total}}.00 </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="generarFactura(su._id)">Confirmar Factura</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="https://gestion-de-hoteles.herokuapp.com/api/generarpdf/{{su._id}}" target="_blank" (click)="actualizar(su._id)">Imprimir factura</a></button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

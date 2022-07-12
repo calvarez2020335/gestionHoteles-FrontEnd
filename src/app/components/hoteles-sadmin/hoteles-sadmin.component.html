@@ -1,0 +1,160 @@
+
+
+<!-- Agregar Hotel -->
+<div class="modal fade " id="ModalAgregarHotel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel" style="color: black">Agregar Hotel</h5>
+        <button type="button" class="buttonn close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="mg-3">
+            <label for="inputNombre" class="form-label">Nombre Hotel</label>
+            <input type="text" id="inputNombre" class="form-control" name="Nombre" #Nombre="ngModel"
+              [(ngModel)]="hotelModelPost.Nombre">
+          </div>
+          <div class="mg-3">
+            <label for="inputDescripcion" class="form-label">Descripcion</label>
+            <input type="text" id="inputDescripcion" class="form-control" name="Descripcion" #Descripcion="ngModel"
+              [(ngModel)]="hotelModelPost.Descripcion">
+          </div>
+
+          <div class="mg-3">
+            <label for="inputDireccion" class="form-label">Direccion</label>
+            <input type="text" id="inputDireccion" class="form-control" name="Direccion" #Direccion="ngModel"
+              [(ngModel)]="hotelModelPost.Direccion">
+          </div>
+
+          <div class="mg-3">
+            <label for="inputDireccion" class="form-label">Gerente</label>
+            <select class="form-select" id="inputGroupSelect01" name="adminHotel" #adminHotel="ngModel" [(ngModel)]="hotelModelPost.adminHotel">
+              <option selected>Elige...</option>
+              <option *ngFor="let adminH of usuarioModelGet" value=[adminH.adminHotel]>{{adminH.nombre}}</option>
+            </select>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="buttonn close" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="buttonn offset" data-bs-dismiss="modal" (click)="postHotel(idUsuario)">Agregar
+          Hotel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Ver Hotel -->
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Tus Hoteles</h2>
+
+  <div class="col-lg-3 col-md-4 d-flex">
+    <button class="buttonN up w-100 align-self-center bi bi-plus-square-fill" data-bs-toggle="modal"
+      data-bs-target="#ModalAgregarHotel"> Agregar Hotel</button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+
+    <div class="col" *ngFor="let su of hotelModelGet">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg"
+        style="background-image: url('../../../assets/images/unsplash-photo-1.jpg');">
+
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="bi bi-trash3-fill mr-2 icons__effect btn btn-sm rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" (click)="eliminarHotel(su._id)"></i>
+          &nbsp;
+
+          <i class="bi bi-pencil-square mr-2 icons__effect btn btn-sm rounded-circle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample" data-bs-placement="top" title="Editar" (click)="getHotelId(su._id)"></i>
+
+        </p>
+
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+
+
+
+
+
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{su.Nombre}}</h2>
+          <p class="h6"> Direccion: {{su.Direccion}}</p>
+          <ul class="d-flex list-unstyled mt-auto">
+
+
+
+          
+          
+            <li class="d-flex align-items-center">
+              <svg class="bi " width="1em" height="1em">
+                <use xlink:href="#calendar3" />
+              </svg>
+
+              <small (click)="getHotelId(su._id)"
+              [routerLink]="['/admin/habitacion', su._id]"><i data-bs-toggle="tooltip" data-bs-placement="top" title="Habitaciones"
+                  class="bi bi-moon-stars-fill"></i></small>
+            </li>
+            <li class="d-flex align-items-center" >
+
+
+
+          </ul>
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getHabitaciones(su._id)">
+            Habitaciones disponibles
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Habitaciones Disponibles -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3 style="text-align: center;">{{habitacionModelGet}}</h3>
+        <h5 style="text-align: center;">Habitaciones estan disponibles</h5>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN  Modal Habitaciones Disponibles -->
+
+<!-- Editar Hotel -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Hotel</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+
+      <div class="mb-3">
+        <label for="inputNombreProducto" class="form-label">Nombre Hotel</label>
+        <input type="text" class="form-control" id="inputNombreProducto" name="NombreProducto" #NombreProducto="ngModel"
+          [(ngModel)]="hotelModelGetId.Nombre">
+      </div>
+      <div class="mb-3">
+        <label for="inputDescripcion" class="form-label"> Descripcion</label>
+        <input type="text" class="form-control" id="inputDescripcion" name="Descripcion" name="Descripcion"
+          #Descripcion="ngModel" [(ngModel)]="hotelModelGetId.Descripcion">
+      </div>
+      <div class="mb-3">
+        <label for="inputDireccion" class="form-label">Direccion</label>
+        <input type="text" class="form-control" id="inputDireccion" name="Direccion" #Direccion="ngModel"
+          [(ngModel)]="hotelModelGetId.Direccion">
+      </div>
+      <button type="submit" class="buttonn pulse" data-bs-dismiss="offcanvas" (click)="putHotel()">Editar Hotel</button>
+    </form>
+  </div>
+</div>
+

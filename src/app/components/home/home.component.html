@@ -1,0 +1,172 @@
+<app-navbar></app-navbar>
+
+<body>
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+        aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+
+          <img class="bd-placeholder-img " src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/23/44/29/photo3jpg.jpg?w=1200&h=-1&s=1">
+
+
+
+        <div class="container ">
+          <div class="carousel-caption text-start  rounded-3">
+            <h1>Busca Hoteles</h1>
+            <p>Puedes buscar hoteles para reservar habitaciones o bien para ver los eventos que ofrecen</p>
+            <p><a class="buttonNN offset" routerLink="/hoteles">Hoteles!!!</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item" >
+
+        <img class="bd-placeholder-img " src="https://content.r9cdn.net/himg/62/c0/84/ice-85676218-68620422_3XL-430714.jpg">
+        <div class="container">
+          <div class="carousel-caption   rounded-3">
+            <h1>Ve en que hoteles te has quedado</h1>
+            <p>Se guardar un historial donde podras ver en que habitaciones te has quedado y que servicios has solicitado</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img class="bd-placeholder-img " src="https://content.r9cdn.net/himg/de/8b/f5/leonardo-1122025-FUENTE_ATARDECER_O-852834.jpg">
+
+        <div class="container ">
+          <div class="carousel-caption text-end  rounded-3">
+            <h1>Registra tus hoteles</h1>
+            <p>Si quieres que tu hotel te aparezca, registrate y resgistra tu hotel</p>
+            <p><a class="buttonNN offset" routerLink="/registrarGerente">Hoteles!!</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!----->
+
+    <div class="container py-4">
+
+      <div class="p-5 mb-4 rounded-3" style="background-color: #FCA311;">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Busca hoteles</h1>
+          <p class="col-md-8 fs-4">Con esta pagina puedes buscar hoteles cercas de tu area, puedes ver los eventos que ofrecen,
+            ademas, puedes reservar una habitación y pedir los servicios que el hotel te ofrezca. (La reserva de la habitación
+            empieza a correr desde el momento en el que haces la petición)
+          </p>
+          <button class="buttonN raise" type="button" routerLink="/hoteles">Veamos Hoteles!!</button>
+        </div>
+      </div>
+
+      <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+          <div class="h-100 p-5 text-white bg-dark rounded-3">
+            <h2>¡Si quieres reservar habitaciones, registrate aqui!</h2>
+            <p>Reserva habitaciones, ve los eventos que ofrecen los hoteles, solicita servicios a la habitación,
+              guarda el historial de las habitaciones que te has hospedado y que servicios has solicitado
+            </p>
+            <button class="btn btn-outline-light" type="button" routerLink="/registrarCliente">Registrarse</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-5 bg-light border rounded-3">
+            <h2>¡Si quieres que tu hotel aparezca, registrate aqui!</h2>
+            <p>Lleva el control de todos tus hoteles en un solo lugar, añade habitaciones, añade eventos y observa
+              todos los usuarios que se han hospedado en tu hotel
+            </p>
+            <button class="btn btn-outline-secondary" type="button" routerLink="/registrarGerente">Registrarse</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ <!----->
+
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://avatars.githubusercontent.com/u/79710741?v=4">
+        <h2>Pedro Lancerio</h2>
+        <p>Desarrollador FrontEnd</p>
+        <p><a class="btn btn-secondary" href="https://github.com/plancerio2020255" target="_blank"><i class="bi bi-github"></i></a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://avatars.githubusercontent.com/u/88805710?v=4">
+        <h2>Alan de la Cruz</h2>
+        <p>Desarrollador BackEnd</p>
+        <p><a class="btn btn-secondary" href="https://github.com/adelacruz2020390" target="_blank"><i class="bi bi-github"></i></a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://avatars.githubusercontent.com/u/88869102?v=4">
+
+        <h2>Marck Herrera</h2>
+        <p>Desarrollador FrontEnd</p>
+        <p><a class="btn btn-secondary" href="https://github.com/MarckHerrera" target="_blank"><i class="bi bi-github"></i></a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://avatars.githubusercontent.com/u/88805642?v=4">
+
+        <h2>Ivan cujcuj</h2>
+        <p>Desarrollador FrontEnd</p>
+        <p><a class="btn btn-secondary" href="https://github.com/ocujcuj2020271" target="_blank"><i class="bi bi-github"></i></a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://avatars.githubusercontent.com/u/89933416?v=4">
+
+        <h2>Diego Hernandez</h2>
+        <p>Desarrollador FrontEnd</p>
+        <p><a class="btn btn-secondary" href="https://github.com/dhernandez2020394" target="_blank"><i class="bi bi-github"></i></a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://avatars.githubusercontent.com/u/88805687?v=4">
+
+        <h2>Carlos Alvarez</h2>
+        <p>Desarrollador BackEnd</p>
+        <p><a class="btn btn-secondary" href="https://github.com/calvarez2020335" target="_blank"><i class="bi bi-github"></i></a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+          <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+        </a>
+        <span class="text-muted">&copy; 2022 Kumatz´</span>
+      </div>
+
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"></i></a></li>
+        <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"></i></a></li>
+        <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"></i></a></li>
+      </ul>
+    </footer>
+  </div>
+
+</body>
